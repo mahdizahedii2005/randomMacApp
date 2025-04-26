@@ -23,11 +23,11 @@ jobs:
           mkdir input
           move sagharHackProgram.jar input
 
-          jpackage ^
-            --input input ^
-            --name SagharHackApp ^
-            --main-jar sagharHackProgram.jar ^
-            --type exe ^
+          jpackage `
+            --input input `
+            --name SagharHackApp `
+            --main-jar sagharHackProgram.jar `
+            --type exe `
             --dest output
 
       - name: Upload DMG as artifact
