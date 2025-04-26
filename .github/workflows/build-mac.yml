@@ -1,12 +1,12 @@
-name: Build macOS App with jpackage
+name: Build Windows App with jpackage
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build-macos:
-    runs-on: macos-latest
+  build-windows:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
@@ -18,20 +18,20 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build DMG with jpackage
+      - name: Build EXE with jpackage
         run: |
           mkdir input
-          mv sagharHackProgram.jar input/
+          move sagharHackProgram.jar input
 
-          jpackage \
-            --input input \
-            --name SagharHackApp \
-            --main-jar sagharHackProgram.jar \
-            --type dmg \
+          jpackage ^
+            --input input ^
+            --name SagharHackApp ^
+            --main-jar sagharHackProgram.jar ^
+            --type exe ^
             --dest output
 
-      - name: Upload DMG as artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload EXE as artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: mac-app
-          path: output/SagharHackApp-*.dmg
+          name: windows-app
+          path: output/SagharHackApp-*.exe
