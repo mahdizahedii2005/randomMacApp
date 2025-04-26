@@ -28,10 +28,11 @@ jobs:
             --name SagharHackApp `
             --main-jar sagharHackProgram.jar `
             --type exe `
-            --dest output
+            --dest output `
+            --win-console
 
-      - name: Upload DMG as artifact
+      - name: Upload EXE as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mac-app
+          name: windows-app
           path: output/SagharHackApp-*.exe
